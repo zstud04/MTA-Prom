@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MN Teen Activists</title>
+	<link rel="shortcut icon" type="image/png" href="img/logoturqoise2.png"/>
+    <link href="/styles/styles.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.typekit.net/aac7ctq.css">
+    <script src ="https://checkout.stripe.com/checkout.js" defer></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <script>
+        var stripePublicKey = '<%= stripePublicKey %>'
+    </script>
+    
+</head>
+<body>
+    <header class="background-color: bg-black" >
+        <ul class="flex justify-between mx-5 pt-5 pb-5">
+            <li class="">
+                <a class="inline-block py-2 px-4 text-gray-400 mt-3" href="#"><img src="img/insta-logo.png"></a>
+                
+              </li>
+            <li class="">
+              <a href="index.html" class="inline text-blue-500py-2 px-4" href="#"><img src="img/logo2.png" class="max-w-[7em] inline"><h3 class="text-white"></h3></a>
+            </li>
+           
+            <li class="">
+                <a class="buttonfont inline-block border border-light-grey rounded py-2 px-3 mt-3 hover:bg-hollywood-gold text-light-grey" href="index.html">Return</a>
+              </li>
+          </ul>
+    </header>
+    <section class="all:bg-mobile-pattern bg-no-repeat bg-cover container bg-top min-w-2xl pb-20">
+    <div class="h-48">
+        <h2 class="header-text hollywood text-center leading-none mobile:leading-normal text-hollywood-gold">CHECKOUT</h2>
+    </div>
+    <form data-multi-step class= "flex justify-items-center justify-center align-middle multi-step-form" id="infoForm" enctype = "multipart/form-data" class="multi-step-form" action="/upload_files" method="post">
+        <div class="card" data-step>
+            <h3 class="buttonfont labeltext text-center">Step 1: Info</h3>
+            <div class="form-group">
+                <label class="buttonfont text-white text-md" for="fname">First name:</label>
+                <input required type="text" name="name" id="name">
+            </div>
+            <div class="form-group">
+                <label class="buttonfont text-white text-md" for="lname">Last name:</label>
+                <input required type="text" name="lname" id="lname">
+            </div>
+            <div class="form-group">
+                <label class="buttonfont text-white text-md"for="email">Email Address:</label>
+                <input required type="email" name="email" id="email">
+            </div>
+            <div class="form-group">
+                <label class="buttonfont text-white text-md" for="grade">Grade:</label>
+                <select class="buttonfont text-black text-md" required id="grade" name="grade">
+                    <option class="buttonfont text-white text-md" value="11th">11th Grade</option>
+                    <option class="buttonfont text-white text-md" value="12th">12th Grade</option>
+                </select>
+            </div>
+            <div class="flex flex-col justify-center items-center ">
+                <button type="button" data-next class="buttonfont mt-5 hover:bg-gray-300 border border-blue text-white font-bold py-[0.9em] px-[6em] rounded-full">
+                 NEXT
+                </button>
+            </div>
+            
+            <!-- <button type="button" data-next>Next</button> -->
+          
+        </div>
+        <div class="card" data-step>
+            <h3 class="buttonfont labeltext text-center">Step 2: Verify ID</h3>
+            <div class="form-group">
+                <label class="buttonfont text-white text-md">Proof of Grade Level: (e.g., transcript, report card, student portal screenshot, school ID, etc.)</label>
+                <input class="buttonfont text-white text-md" required type="file" id="myFile" name="filename">
+                
+            </div>
+            <div class="form-group">
+                <label class="buttonfont text-white text-md">Proof of Vaccination(Vaccine Card) or Negative Test within the past 48 hours</label>
+                <input class="buttonfont text-white text-md" required type="file" id="myFile" name="filename">
+                
+            </div>
+             <h3 class="buttonfont text-white text-md">(If coming from outside the Metro)<br> Would you like hotel room accomodations for the night?<br>(Will need to be accompanied by 21+guardian)</h3>
+             
+            <div class="form-group">
+                <div>
+                    <input required type="radio" id="yes" name="overnight" value="yes"
+                           >
+                    <label class="buttonfont text-white text-md" for="yes">Yes</label>
+                  </div>
+                  <div>
+                    <input required type="radio" id="no" name="overnight" value="no">
+                    <label class="buttonfont text-white text-md" for="no">No</label>
+                  </div>
+
+            </div>
+            <div class="form-group">
+                <label  class="buttonfont text-white text-md" for="name">Parent First name: (if staying overnight)</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="form-group">
+                <label  class="buttonfont text-white text-md" for="lname">Parent Last name: (if staying overnight)</label>
+                <input type="text" name="lname" id="lname">
+            </div>
+            <div class="form-group">
+                <label class="buttonfont text-white text-md" for="email">Parent Email Address: (if staying overnight)</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div class="flex flex-col justify-center items-center ">
+                <button type="button" data-next class="buttonfont mt-5 hover:bg-gray-300 border border-blue text-white font-bold py-[0.9em] px-[6em] rounded-full">
+                    NEXT
+                   </button>
+                <button type="button" data-previous class="buttonfont mt-5 hover:bg-gray-300 border border-blue text-white font-bold py-[0.9em] px-[6em] rounded-full">
+                    PREVIOUS
+                   </button>
+                
+            </div>
+            
+        </div>
+        <div class="card" data-step>
+            <h3 class="buttonfont labeltext text-center">Step 3: Complete Purchase</h3>
+            <label class="buttonfont text-white text-md">Your ticket will be emailed to you shortly after your ID is confirmed.</label>
+          <!-- <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName">
+          </div> -->
+          <div class="flex flex-col justify-center items-center ">
+            <button  type="submit" id="pay" class="buttonfont mt-5 hover:bg-gray-300 border border-blue text-white font-bold py-[0.9em] px-[6em] rounded-full">
+                CHECKOUT
+               </button>
+            <!-- <button  type="submit" class="buttonfont mt-5 hover:bg-gray-300 border border-blue text-white font-bold py-[0.9em] px-[6em] rounded-full">
+                SUBMIT
+               </button> -->
+            <button type="button" data-previous class="buttonfont mt-5 hover:bg-gray-300 border border-blue text-white font-bold py-[0.9em] px-[6em] rounded-full">
+                PREVIOUS
+               </button>
+            
+        </div>
+        
+      </form>
+    </section>
+    <script src="form.js" defer></script>
+</body>
+
+</html>
